@@ -118,3 +118,61 @@ public class MyLinkedList<T> implements MyList<T> {
         return size == 0;
     }
 }
+
+public class Main {
+
+    public static void operate(MyList<?> list) {
+
+        try {
+
+            System.out.println("Size: " + list.size());
+            System.out.println("Is Empty: " + list.isEmpty());
+            System.out.println("First Element: " + list.get(0));
+
+        } catch (IndexOutOfBoundsException | IllegalStateException e) {
+
+            System.out.println("Exception: " + e.getMessage());
+
+        } finally {
+
+            System.out.println("Operation Completed");
+            System.out.println("-------------------");
+        }
+    }
+
+    public static void main(String[] args) {
+
+        MyList<Integer> list1 = new MyArrayList<>();
+        MyList<String> list2 = new MyLinkedList<>();
+
+        try {
+
+            list1.add(10);
+            list1.add(20);
+            list1.insert(15, 1);
+
+            list2.add("A");
+            list2.add("B");
+            list2.delete(0);
+
+        } catch (Exception e) {
+
+            System.out.println("Error: " + e.getMessage());
+
+        }
+
+        operate(list1);
+        operate(list2);
+
+        try {
+
+            list1.get(10);
+
+        } catch (Exception e) {
+
+            System.out.println("Generated Exception: " + e.getMessage());
+
+        }
+    }
+}
+
